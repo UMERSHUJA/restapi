@@ -1,4 +1,4 @@
-from django.shortcuts import render,HttpResponseRedirect,Http404
+from django.shortcuts import render, HttpResponseRedirect,Http404
 from rest_framework.parsers import JSONParser
 from django.http import HttpResponse,JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -11,8 +11,11 @@ def ItemsView(request):
     if request.method == 'GET':
         items = ItemModel.objects.all()
         serializer = ItemSerializer(items, many =True)
-        return JsonResponse(serializer.data, safe =False)
- 
+        # return JsonResponse(serializer.data, safe =False)
+        context = {
+            'data': serializer.data, 
+        }
+        return render(request, 'index.html', context)
     elif request.method == 'POST':
         data = JSONParser().parse(request)
         serializer =ItemSerializer(data = data)

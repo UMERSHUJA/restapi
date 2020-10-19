@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>hello</title>
+</head>
+<body>
+	{% if data %}
+		{% for a in data %}
+			<div class="col-md-12">
+				<h3>Name: </h3>
+				<p>{{a.name}}</p>
+
+				<h3>Price: </h3>
+				<p>{{a.price}}</p>
+			</div>
+			<hr>
+		{% endfor %}
+	{% endif %}
+
+
+</body>
+</html>
